@@ -48,7 +48,6 @@ class DailyProgressListView(APIView):
             try:
                 selected_date = date.fromisoformat(selected_date)
             except ValueError:
-
                 return Response({'Errore' : 'format not match'} , status=400)
         return Response({'date': selected_date.isoformat()})
 
@@ -96,6 +95,12 @@ class WeeklyProgressListView(APIView):
                 'done_tasks': done,
                 'progress_percent': progress
             })
+
+            # [
+            #     {"date": "2025-11-03", "total_tasks": 5, "done_tasks": 2, "progress_percent": 40.0},
+            #     {"date": "2025-11-04", "total_tasks": 4, "done_tasks": 3, "progress_percent": 75.0},
+            #     {"date": "2025-11-05", "total_tasks": 6, "done_tasks": 5, "progress_percent": 83.33}
+            # ]
 
         return Response(results)
 
